@@ -1,0 +1,497 @@
+@use 'variable';
+// Header section design
+.App-header {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    background-color: variable.$black;
+    margin-bottom: 25px;
+    border-bottom: 2px solid variable.$yellow;
+    .flex-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .col-md-4,
+        .col-md-8 {
+            @media (max-width: variable.$mobile) {
+                width: auto;
+            }
+        }
+        .header-logo {
+            max-width: 60px;
+            img {
+                width: 100%;
+                cursor: pointer;
+                object-fit: cover;
+            }
+        }
+        .menu-toggle {
+            position: relative;
+            display: none;
+            width: 25px;
+            border: none;
+            cursor: pointer;
+            @media (max-width: variable.$mobile) {
+                display: block;
+            }
+            span {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 2px;
+                transition-duration: .25s;
+                color: variable.$white;
+                &::before,
+                &:after {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: variable.$white;
+                    transition-duration: .25s;
+                }
+                &:before {
+                    content: '';
+                    top: -8px;
+                }
+                &:after {
+                    content: '';
+                    top: 8px;
+                }
+            }
+        }
+        .navbar {
+            justify-content: flex-end;
+            background-color: transparent !important;
+            &.hide {
+                @media (max-width: variable.$mobile) {
+                    display: none;
+                }
+            }
+           &.show {
+                @media (max-width: variable.$mobile) {
+                    display: block;
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 75px;
+                    background-color: variable.$black !important;
+                    z-index: 9;
+                }
+           }
+        
+            .navbar-nav {
+                display: inline-block;
+                @media (max-width: variable.$mobile) {
+                    width: 100%;
+                }
+                li {
+                    display: inline-block;
+                    padding: 8px 12px;
+                    @media (max-width: variable.$mobile) {
+                        width: 100%;
+                    }
+                    .nav-link {
+                        font-size: 15px;
+                        color: variable.$white;
+                        padding: 0;
+                        transition: all 0.5s;
+                        -moz-transition: all 0.5s;
+                        -webkit-transition: all 0.5s;
+                        &:hover {
+                            color: variable.$yellow;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Product List Page design
+.product-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 !important;
+    .list {
+        width: 33.33%;
+        max-width: 33.33%;
+        padding: 0 10px;
+        margin-bottom: 20px;
+
+        @media screen and (max-width: variable.$laptop) {
+            width: 50%;
+            max-width: 50%;  
+        }
+        @media screen and (max-width: variable.$mobile) {
+            width: 100%;
+            max-width: 100%; 
+            margin-bottom: 15px; 
+        }
+        a {
+            text-decoration: none;
+            .list-item {
+                display: flex;
+                align-items: flex-start;
+                height: 100%;
+                width: 100%;
+                max-width: 100%;
+                padding: 15px;
+                justify-content: flex-start;
+                box-shadow: 0 0 15px variable.$box-shadow-color;
+                border: 1px solid variable.$light-grey;
+                border-radius: 5px;
+                @media (max-width: variable.$xs-mobile) {
+                    flex-wrap: wrap;
+                }
+                .product-image {
+                    display: inline-block;
+                    width: 100%;
+                    max-width: 130px;
+                    flex: 0 0 130px;
+                    padding-top: 5px;
+                    @media screen and (max-width: variable.$ipad) {
+                        max-width: 120px;
+                        flex: 0 0 120px;
+                    }
+                    @media (max-width: variable.$xs-mobile) {
+                        margin-bottom: 20px;
+                        max-width: 100%;
+                        flex: 0 0 100%;
+                        height: 250px;
+                        text-align: center;
+                    }
+                    img {
+                        height: auto;
+                        width: 100%;
+                        @media (max-width: variable.$xs-mobile) {
+                            width: auto;
+                            margin: 0 auto;
+                            max-width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+                .product-info {
+                    text-align: left;
+                    padding: 0 0 0 15px;
+                    @media screen and (max-width: variable.$mobile) {
+                        padding: 5px 10px 5px 20px;
+                    }
+                    @media (max-width: variable.$xs-mobile) {
+                        padding: 5px 10px;
+                    }
+                    h4 {
+                        color: variable.$black;
+                        font-size: 18px;
+                        font-weight: 500;
+                        line-height: 1.2;
+                        margin-bottom: 5px;
+                        @media screen and (max-width: variable.$mobile) {
+                            font-size: 16px; 
+                        }
+                    }
+                    h5 {
+                        color: variable.$grey;
+                        font-size: 16px;
+                        @media screen and (max-width: variable.$mobile) {
+                            font-size: 14px; 
+                        }
+                    }
+                    p, .price-data,
+                    .rate-name,
+                    .count-name {
+                        color: variable.$grey-37;
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                        @media screen and (max-width: variable.$mobile) {
+                            font-size: 14px; 
+                        }
+                    }
+                    .list-item-description{
+                        display: -webkit-box; 
+                        -webkit-box-orient: vertical; 
+                        -webkit-line-clamp: 3; 
+                        overflow: hidden; 
+                        text-overflow: ellipsis;
+                        word-break: break-all;
+                        line-height: 18px;
+                    }
+                    .price-data,
+                    .rate-name,
+                    .count-name {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+            
+    }
+    .no-data {
+        padding-left: 15px;
+    }
+}
+
+// Product Deatils Page Design
+.product-detail-main-wrapper {
+    .product-detail-image-wrapper {
+        padding: 0px 30px 50px 0px;
+        @media screen and (max-width: variable.$mobile) {
+            padding: 0px 0px 20px 0px;
+        }
+        .product-detail-image {
+            width: 100%;
+            border: 1px solid variable.$image-border-grey;
+            padding: 30px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .product-detail-info {
+        @media screen and (max-width: variable.$mobile) {
+            margin: 10px 0 30px;
+        }
+        h5 {
+            font-size: 12px;
+            color: variable.$yellow;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        h4 {
+            font-weight: 700;
+            margin: 15px 0 10px;
+            @media screen and (max-width: variable.$mobile) {
+                margin: 10px 0 5px;
+            }
+        }  
+        p, .rate-name, .count-name, .price-data {
+            color: variable.$black-08;
+            font-size: 14px;
+            font-weight: 500;
+            span {
+                font-weight: 400;
+            }
+        }
+        .price-data { 
+            span {
+                color: variable.$yellow;
+            }
+        }
+        .rate-name,
+        .count-name {
+            margin-bottom: 8px;
+        }
+        .price-btn {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            .btn-add-cart {
+                margin-left: 10px;
+                font-size: 14px;
+                padding: 8px 15px 10px;
+                border: 1px solid variable.$yellow;
+                background-color: transparent;
+                color: variable.$yellow;;
+                transition: all 0.5s;
+                line-height: 1;
+                font-weight: 500;
+                &:hover {
+                    background-color: variable.$yellow;;
+                    color: variable.$white;
+                }
+            }
+        } 
+    }
+}
+
+// Title Design
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-title {
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: variable.$yellow;
+    @media (max-width: variable.$mobile) {
+        font-size: 28px;
+    }
+}
+
+// Breadcrumbs Design
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    span,
+    a {
+        color: variable.$yellow;
+        text-decoration: none;
+        transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+    }
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .separator {
+        margin: 0 5px;
+    }       
+}
+
+// Login Page
+.login-wrapper,
+.product-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px;
+    padding: 0 15px;
+    text-align: center;
+    form {
+        margin-bottom: 15px;
+        label {
+            color: variable.$black;
+            text-align: left;
+            display: block;
+            font-size: 14px;
+        }
+        .form-control {
+            padding: 6px 12px 8px;
+            border: 1px solid variable.$image-border-grey;
+            font-size: 14px;
+            &:focus {
+                border: 1px solid variable.$black;
+                box-shadow: none;
+            }
+
+            &::placeholder {
+                color: variable.$image-border-grey;
+            }
+        }
+        .error-msg {
+            display: inline-block;
+            width: 100%;
+            color: variable.$red;
+            font-size: 14px;
+            text-align: left;
+        }
+        .common-btn {
+            color: variable.$yellow;
+            border-radius: 3px;
+            border: 1px solid variable.$yellow;
+            background-color: variable.$white;
+            min-width: 110px;
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 14px;
+            &:hover {
+                background-color: variable.$yellow;
+                color: variable.$white;
+            }
+        }
+    }
+    .login-para-link {
+        margin-bottom: 2px;
+        font-size: 14px;
+        .login-link {
+            color: variable.$yellow
+        }
+    }
+}
+
+.product-form-wrapper {
+    text-align: left;
+}
+// Common btn design
+.common-btn {
+    margin-left: 10px;
+    color: variable.$yellow;
+    border-radius: 3px;
+    border: 1px solid variable.$yellow;
+    background-color: variable.$white;
+    min-width: 110px;
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    &:hover {
+        background-color: variable.$yellow;
+        color: variable.$white;
+    }
+}
+
+// Product table view page design
+.product-table-view-wrapper {
+    overflow-x: auto;
+    .productimage {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+// Pagination design
+ul.pagination {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    padding: 20px 50px;
+    --bs-pagination-active-border-color: variable.$yellow;
+    .page-item {
+        width: auto;
+        display: inline-block;
+        &.active {
+            background-color: transparent;
+            > .page-link {
+                background-color: variable.$yellow;
+                color: variable.$white;
+            }
+        }
+        .page-link {
+            color: variable.$yellow;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+// Product Material UI design
+.producttablelistwrapper {
+    .materialtablewrapper {
+        .MuiTableRow-head {
+            th {
+                font-weight: 600;
+            }
+        }
+        .productimage {
+            width: 50px;
+        }
+        .MuiTableSortLabel-iconDirectionDesc {
+            transform: rotate(180deg);
+        }
+    }
+    .product-table-pagination {
+        width: 100%;
+        padding: 30px 0;
+        text-align: center;
+        .MuiPagination-ul {
+            justify-content: center;
+            li {
+                .Mui-selected {
+                    color: variable.$white;
+                    background-color: rgb(221 177 97);
+                }
+            }
+        }
+    }
+}
